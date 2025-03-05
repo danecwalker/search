@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"text/template"
 )
@@ -98,8 +99,8 @@ func main() {
 		return
 	})
 
-	fmt.Println("serving")
-	if err = http.ListenAndServe(":3000", mux); err != nil {
+	fmt.Println("serving", os.Args[1])
+	if err = http.ListenAndServe(os.Args[1], mux); err != nil {
 		panic(err)
 	}
 }
