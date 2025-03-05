@@ -1,0 +1,14 @@
+{
+  "gh": {
+    "name": "Github",
+    "query": "https://github.com/search?q={{.s}}&type=repositories"
+  },
+  "gi": {
+    "name": "Google Images",
+    "query": "https://www.google.com/search?q={{.s}}&udm=2"
+  },
+  "yt": {
+    "name": "Youtube",
+    "query": "https://www.youtube.com/results?search_query={{.s}}"
+  }
+}
