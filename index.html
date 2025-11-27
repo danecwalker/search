@@ -7,22 +7,257 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/reset.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body class="flex flex-col justify-center items-center font-sriracha">
-    <h1 class="text-4xl font-bold uppercase">Search</h1>
+  <body>
+    <div class="background-gradient"></div>
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+    
+    <main class="container">
+      <h1 class="logo-text">Search</h1>
+      <p class="tagline">Find anything, anywhere</p>
 
-    <form action="/" class="w-full max-w-lg">
-      <input
-        name="q"
-        type="text"
-        class="bg-gray-100 border border-gray-300 rounded p-2 w-full mt-6 font-system"
-        placeholder="Goats @gi"
-      />
-    </form>
+      <form action="/" class="search-form" autocomplete="off">
+        <div class="search-wrapper" style="position:relative;">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <input
+            name="q"
+            type="text"
+            class="search-input"
+            placeholder="Search for anything... try 'goats @gi'"
+            autocomplete="off"
+            autofocus
+            id="search-input"
+            oninput="showShortcutAutocomplete(this)"
+            onkeydown="handleShortcutAutocompleteKey(event)"
+            onblur="hideShortcutAutocomplete()"
+          />
+          <div id="shortcut-autocomplete" class="shortcut-autocomplete" style="display:none;"></div>
+          <button type="submit" class="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+      
+      <div class="quick-tries">
+        <span class="quick-label">Try:</span>
+        <button class="quick-tag" onclick="document.querySelector('.search-input').value='weather'">weather</button>
+        <button class="quick-tag" onclick="document.querySelector('.search-input').value='react hooks @yt'">react hooks @yt</button>
+        <button class="quick-tag" onclick="document.querySelector('.search-input').value='cute cats @gi'">cute cats @gi</button>
+      </div>
+      
+      <div class="cheatsheet">
+        <button class="cheatsheet-toggle" aria-expanded="false" onclick="(function(btn){
+            const p = btn.parentElement;
+            p.classList.toggle('expanded');
+            const expanded = p.classList.contains('expanded');
+            btn.setAttribute('aria-expanded', expanded);
+            const inner = p.querySelector('.cheatsheet-inner');
+            if (expanded) {
+              inner.focus();
+            } else {
+              inner.blur();
+            }
+          })(this)">
+          <span>Shortcuts</span>
+          <svg class="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="cheatsheet-content">
+          <div class="cheatsheet-inner" tabindex="0">
+            <p class="cheatsheet-hint">Add <code>@shortcut</code> to your search to use a specific engine</p>
+            <div class="shortcut-grid">
+              <div class="shortcut-card">
+                <span class="shortcut-key">@g</span>
+                <span class="shortcut-name">Google</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@gi</span>
+                <span class="shortcut-name">Google Images</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@yt</span>
+                <span class="shortcut-name">YouTube</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@gh</span>
+                <span class="shortcut-name">GitHub</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@ai</span>
+                <span class="shortcut-name">ChatGPT</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@ddg</span>
+                <span class="shortcut-name">DuckDuckGo</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@w</span>
+                <span class="shortcut-name">Wikipedia</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@r</span>
+                <span class="shortcut-name">Reddit</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@x</span>
+                <span class="shortcut-name">X (Twitter)</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@so</span>
+                <span class="shortcut-name">Stack Overflow</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@npm</span>
+                <span class="shortcut-name">npm</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@mdn</span>
+                <span class="shortcut-name">MDN Web Docs</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@maps</span>
+                <span class="shortcut-name">Google Maps</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@amz</span>
+                <span class="shortcut-name">Amazon</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@sp</span>
+                <span class="shortcut-name">Spotify</span>
+              </div>
+              <div class="shortcut-card">
+                <span class="shortcut-key">@imdb</span>
+                <span class="shortcut-name">IMDb</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <footer class="footer">
+      <p>Press <kbd>⌘</kbd> + <kbd>K</kbd> to focus search</p>
+    </footer>
+
+    <script>
+      // Keyboard shortcut for focusing search
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+          e.preventDefault();
+          document.querySelector('.search-input').focus();
+        }
+      });
+
+      // Shortcuts list (keep in sync with shortcuts.json)
+      const SHORTCUTS = [
+        { key: 'g', name: 'Google' },
+        { key: 'gi', name: 'Google Images' },
+        { key: 'yt', name: 'YouTube' },
+        { key: 'gh', name: 'GitHub' },
+        { key: 'ai', name: 'ChatGPT' },
+        { key: 'ddg', name: 'DuckDuckGo' },
+        { key: 'w', name: 'Wikipedia' },
+        { key: 'r', name: 'Reddit' },
+        { key: 'x', name: 'X (Twitter)' },
+        { key: 'so', name: 'Stack Overflow' },
+        { key: 'npm', name: 'npm' },
+        { key: 'mdn', name: 'MDN Web Docs' },
+        { key: 'maps', name: 'Google Maps' },
+        { key: 'amz', name: 'Amazon' },
+        { key: 'sp', name: 'Spotify' },
+        { key: 'twitch', name: 'Twitch' },
+        { key: 'imdb', name: 'IMDb' },
+        { key: 'gpt', name: 'ChatGPT' }
+      ];
+
+      let autocompleteIndex = -1;
+
+      function showShortcutAutocomplete(input) {
+        const val = input.value;
+        const atIdx = val.lastIndexOf('@');
+        const ac = document.getElementById('shortcut-autocomplete');
+        if (atIdx === -1) {
+          ac.style.display = 'none';
+          autocompleteIndex = -1;
+          return;
+        }
+        const query = val.slice(atIdx + 1).toLowerCase();
+        const matches = SHORTCUTS.filter(s => s.key.startsWith(query) || s.name.toLowerCase().includes(query));
+        if (matches.length === 0 || (query.length === 0 && val[val.length-1] !== '@')) {
+          ac.style.display = 'none';
+          autocompleteIndex = -1;
+          return;
+        }
+        ac.innerHTML = matches.map((s, i) =>
+          `<div class="shortcut-ac-item${i===autocompleteIndex?' selected':''}" data-key="${s.key}" onclick="selectShortcutAutocomplete('${s.key}')"><span class='shortcut-ac-key'>@${s.key}</span> <span class='shortcut-ac-name'>${s.name}</span></div>`
+        ).join('');
+        ac.style.display = 'block';
+      }
+
+      function selectShortcutAutocomplete(key) {
+        const input = document.getElementById('search-input');
+        const val = input.value;
+        const atIdx = val.lastIndexOf('@');
+        if (atIdx !== -1) {
+          input.value = val.slice(0, atIdx+1) + key + ' ';
+          input.focus();
+          document.getElementById('shortcut-autocomplete').style.display = 'none';
+        }
+      }
+
+      function handleShortcutAutocompleteKey(e) {
+        const ac = document.getElementById('shortcut-autocomplete');
+        if (ac.style.display !== 'block') return;
+        const items = ac.querySelectorAll('.shortcut-ac-item');
+        if (e.key === 'ArrowDown') {
+          autocompleteIndex = (autocompleteIndex + 1) % items.length;
+          updateAutocompleteSelection(items);
+          items[autocompleteIndex].scrollIntoView({ block: 'nearest' });
+          e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+          autocompleteIndex = (autocompleteIndex - 1 + items.length) % items.length;
+          updateAutocompleteSelection(items);
+          items[autocompleteIndex].scrollIntoView({ block: 'nearest' });
+          e.preventDefault();
+        } else if (e.key === 'Enter') {
+          if (autocompleteIndex >= 0 && items[autocompleteIndex]) {
+            items[autocompleteIndex].click();
+            e.preventDefault();
+          }
+        } else if (e.key === 'Escape') {
+          ac.style.display = 'none';
+          autocompleteIndex = -1;
+        } else {
+          autocompleteIndex = -1;
+        }
+      }
+
+      function updateAutocompleteSelection(items) {
+        items.forEach((el, i) => {
+          if (i === autocompleteIndex) el.classList.add('selected');
+          else el.classList.remove('selected');
+        });
+      }
+
+      function hideShortcutAutocomplete() {
+        document.getElementById('shortcut-autocomplete').style.display = 'none';
+        autocompleteIndex = -1;
+      }
+    </script>
   </body>
 </html>

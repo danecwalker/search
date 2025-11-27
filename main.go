@@ -11,15 +11,15 @@ import (
 	"text/template"
 )
 
-type Resource struct {
+type Shortcut struct {
 	Name  string `json:"name"`
 	Query string `json:"query"`
 }
 
-type Resources map[string]Resource
+type Shortcuts map[string]Shortcut
 
-//go:embed resources.json
-var resource_file []byte
+//go:embed shortcuts.json
+var shortcuts_file []byte
 
 //go:embed index.html
 var index []byte
@@ -30,19 +30,19 @@ var styles []byte
 //go:embed reset.css
 var reset []byte
 
-func loadResources() (Resources, error) {
-	var r Resources
+func loadShortcuts() (Shortcuts, error) {
+	var s Shortcuts
 
-	err := json.Unmarshal(resource_file, &r)
+	err := json.Unmarshal(shortcuts_file, &s)
 	if err != nil {
 		return nil, err
 	}
 
-	return r, nil
+	return s, nil
 }
 
 func main() {
-	resources, err := loadResources()
+	shortcuts, err := loadShortcuts()
 	if err != nil {
 		panic(err)
 	}
@@ -70,8 +70,8 @@ func main() {
 
 		split := strings.Split(q, " ")
 		if split[len(split)-1][0] == '@' {
-			if res, ok := resources[split[len(split)-1][1:]]; ok {
-				t, err := template.New("").Parse(res.Query)
+			if shortcut, ok := shortcuts[split[len(split)-1][1:]]; ok {
+				t, err := template.New("").Parse(shortcut.Query)
 				if err != nil {
 					return
 				}
@@ -96,7 +96,6 @@ func main() {
 		})
 		w.Header().Set("Location", loc.String())
 		w.WriteHeader(303)
-		return
 	})
 
 	fmt.Println("serving", os.Args[1])

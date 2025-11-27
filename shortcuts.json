@@ -1,0 +1,74 @@
+{
+  "g": {
+    "name": "Google",
+    "query": "https://www.google.com/search?q={{.s}}"
+  },
+  "gi": {
+    "name": "Google Images",
+    "query": "https://www.google.com/search?q={{.s}}&udm=2"
+  },
+  "yt": {
+    "name": "YouTube",
+    "query": "https://www.youtube.com/results?search_query={{.s}}"
+  },
+  "gh": {
+    "name": "GitHub",
+    "query": "https://github.com/search?q={{.s}}&type=repositories"
+  },
+  "ai": {
+    "name": "ChatGPT",
+    "query": "https://chatgpt.com/?model=o4-mini-high&q={{.s}}"
+  },
+  "ddg": {
+    "name": "DuckDuckGo",
+    "query": "https://duckduckgo.com/?q={{.s}}"
+  },
+  "w": {
+    "name": "Wikipedia",
+    "query": "https://en.wikipedia.org/wiki/Special:Search?search={{.s}}"
+  },
+  "r": {
+    "name": "Reddit",
+    "query": "https://www.reddit.com/search/?q={{.s}}"
+  },
+  "x": {
+    "name": "X (Twitter)",
+    "query": "https://x.com/search?q={{.s}}"
+  },
+  "so": {
+    "name": "Stack Overflow",
+    "query": "https://stackoverflow.com/search?q={{.s}}"
+  },
+  "npm": {
+    "name": "npm",
+    "query": "https://www.npmjs.com/search?q={{.s}}"
+  },
+  "mdn": {
+    "name": "MDN Web Docs",
+    "query": "https://developer.mozilla.org/en-US/search?q={{.s}}"
+  },
+  "maps": {
+    "name": "Google Maps",
+    "query": "https://www.google.com/maps/search/{{.s}}"
+  },
+  "amz": {
+    "name": "Amazon",
+    "query": "https://www.amazon.com/s?k={{.s}}"
+  },
+  "sp": {
+    "name": "Spotify",
+    "query": "https://open.spotify.com/search/{{.s}}"
+  },
+  "twitch": {
+    "name": "Twitch",
+    "query": "https://www.twitch.tv/search?term={{.s}}"
+  },
+  "imdb": {
+    "name": "IMDb",
+    "query": "https://www.imdb.com/find/?q={{.s}}"
+  },
+  "gpt": {
+    "name": "ChatGPT",
+    "query": "https://chatgpt.com/?model=o4-mini-high&q={{.s}}"
+  }
+}
