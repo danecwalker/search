@@ -18,9 +18,6 @@ type Shortcut struct {
 
 type Shortcuts map[string]Shortcut
 
-//go:embed shortcuts.json
-var shortcuts_file []byte
-
 //go:embed index.html
 var index []byte
 
@@ -33,7 +30,12 @@ var reset []byte
 func loadShortcuts() (Shortcuts, error) {
 	var s Shortcuts
 
-	err := json.Unmarshal(shortcuts_file, &s)
+	data, err := os.ReadFile("shortcuts.json")
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.Unmarshal(data, &s)
 	if err != nil {
 		return nil, err
 	}
