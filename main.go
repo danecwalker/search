@@ -30,7 +30,7 @@ var reset []byte
 func loadShortcuts() (Shortcuts, error) {
 	var s Shortcuts
 
-	data, err := os.ReadFile("shortcuts.json")
+	data, err := os.ReadFile("/data/shortcuts.json")
 	if err != nil {
 		return nil, err
 	}

@@ -28,7 +28,7 @@ COPY shortcuts.json .
 EXPOSE 80
 
 # Expose volume for shortcuts
-VOLUME ["/app"]
+VOLUME ["/data"]
 
 # Run the application
 CMD ["./main", ":80"]
