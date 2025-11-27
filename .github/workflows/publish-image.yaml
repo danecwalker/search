@@ -1,0 +1,26 @@
+name: Publish Container Image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY_USER: ${{ github.actor }}
+  REGISTRY_PASSWORD: ${{ github.token }}
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+
+jobs:
+  login:
+    name: Build and Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Build and Push Image
+        run: |
+          podman login --username $REGISTRY_USER --password $REGISTRY_PASSWORD ghcr.io
+          podman build -t $IMAGE_REGISTRY/search:${{github.sha}} -f Dockerfile .
+          podman push $IMAGE_REGISTRY/search:${{github.sha}}
+          podman tag $IMAGE_REGISTRY/search:${{github.sha}} $IMAGE_REGISTRY/search:latest
+          podman push $IMAGE_REGISTRY/search:latest
