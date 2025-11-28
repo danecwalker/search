@@ -24,11 +24,8 @@ COPY --from=builder /app/main .
 # Copy the shortcuts file
 COPY shortcuts.json .
 
-# Expose port 80
-EXPOSE 80
-
 # Expose volume for shortcuts
 VOLUME ["/data"]
 
 # Run the application
-CMD ["./main", ":80"]
+CMD ["./main"]

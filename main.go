@@ -100,8 +100,17 @@ func main() {
 		w.WriteHeader(303)
 	})
 
-	fmt.Println("serving", os.Args[1])
-	if err = http.ListenAndServe(os.Args[1], mux); err != nil {
+	port := ":" + defaultEnv("PORT", "8080")
+
+	fmt.Println("serving", port)
+	if err = http.ListenAndServe(port, mux); err != nil {
 		panic(err)
 	}
+}
+
+func defaultEnv(key, def string) string {
+	if val, ok := os.LookupEnv(key); ok {
+		return val
+	}
+	return def
 }
